@@ -35,7 +35,6 @@ const TanStackTable = () => {
           className="rounded-full w-10 h-10 object-cover"
         />
       ),
-      
       header: "Profile",
     }),
     columnHelper.accessor("firstName", {
@@ -89,7 +88,7 @@ const TanStackTable = () => {
   return (
     <Card>
       <CardHeader
-        className="px-4 py-2 flex items-center justify-between"
+        className="px-4 py-2 flex flex-col md:flex-row items-center justify-between"
         contentPosition="left"
       >
         <DebouncedInput
@@ -100,8 +99,8 @@ const TanStackTable = () => {
         />
         <DownloadBtn data={data} fileName={"peoples"} />
       </CardHeader>
-      <CardBody>
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <CardBody className="overflow-scroll">
+        <table class="text-sm w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
@@ -141,13 +140,15 @@ const TanStackTable = () => {
             )}
           </tbody>
         </table>
-        <div className="flex items-center justify-end mt-2 gap-2">
+        <div className="flex flex-col lg:flex-row justify-around w-full items-center lg:justify-end mt-2 gap-2">
+         <div className="flex justify-around w-full lg:w-auto">
+
           <button
             onClick={() => {
               table.previousPage();
             }}
             disabled={!table.getCanPreviousPage()}
-            className="p-1 border border-gray-300 px-2 disabled:opacity-30"
+            className="p-1 mx-2 border border-gray-300 px-2 disabled:opacity-30"
           >
             {"<"}
           </button>
@@ -160,16 +161,17 @@ const TanStackTable = () => {
           >
             {">"}
           </button>
+         </div>
 
           <span className="flex items-center gap-1">
             <div>Page</div>
             <strong>
               {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
+              {table.getPageCount()} 
             </strong>
           </span>
           <span className="flex items-center gap-1">
-            | Go to page:
+           <span className="hidden lg:block">|</span>  Go to page:
             <input
               type="number"
               defaultValue={table.getState().pagination.pageIndex + 1}

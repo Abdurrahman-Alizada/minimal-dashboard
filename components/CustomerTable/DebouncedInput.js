@@ -26,7 +26,7 @@ const DebouncedInput = ({
           type="search"
           placeholder="Search"
           containerProps={{
-            className: "min-w-[288px]",
+            className: "lg:min-w-[288px]",
           }}
           className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
           labelProps={{
